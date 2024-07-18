@@ -1,0 +1,24 @@
+{
+  "name": "apollo-server-demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/apollo-server-demo/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "apollo-server-demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "apollo-server-demo:build:development"
+        },
+        "production": {
+          "buildTarget": "apollo-server-demo:build:production"
+        }
+      }
+    }
+  }
+}
