@@ -1,5 +1,6 @@
 import { Books } from "./components/books";
-
+import AddBookForm from "./components/form";
+export const dynamic = 'force-dynamic';
 export default async function Index() {
   
   /*
@@ -18,6 +19,7 @@ export default async function Index() {
             </h1>
           </div>
         <Books/>
+        {/* <AddBookForm/> */}
           
 
        
