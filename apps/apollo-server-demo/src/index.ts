@@ -13,6 +13,15 @@ const typeDefs = `#graphql
     author: String
   }
 
+  type BlogPost {
+   title: String
+   content: String
+  }
+
+  type Query {
+    posts: [BlogPost]
+  }
+
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
@@ -23,6 +32,10 @@ const typeDefs = `#graphql
   type Mutation {
     addBook(title: String, author: String): Book
   }
+
+  type Mutation {
+    createPost(title: String, content: String): BlogPost
+  }
 `;
 type Book={ 
   title:string;
@@ -31,17 +44,31 @@ type Book={
 const books:Book[] = [
   
 ];
+type BlogPost={ 
+  title:string;
+  content:string;
+}
+const posts:BlogPost[] = [
+  
+];
 
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
     books: () => books,
+    posts: () => posts
   },
   Mutation: {
     addBook: (_: any, args: { author: any; title: any; }) => {
       books.push({
         author: args.author, title: args.title 
+      });
+      return args;
+    },
+    createPost: (_: any, args: { content: any; title: any; }) => {
+      posts.push({
+        content: args.content, title: args.title 
       });
       return args;
     },
