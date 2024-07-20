@@ -15,7 +15,8 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.10.8",
+    "@apollo/client": "^3.11.0-rc.2",
+    "@apollo/experimental-nextjs-app-support": "^0.11.2",
     "@nx/devkit": "19.4.2",
     "@nx/eslint": "19.4.2",
     "@nx/eslint-plugin": "19.4.2",

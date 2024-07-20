@@ -17,8 +17,8 @@ const AddBookForm = () => {
   const [author, setAuthor] = useState('');
   const [addBook, { data, loading, error }] = useMutation(ADD_BOOK);
 
-  if (loading) return 'Submitting...';
-  if (error) return `Submission error! ${error.message}`;
+  if (loading) return <h1>Submitting...</h1>;
+  if (error) return <div>{`Submission error! ${error.message}`}</div>;
   return (
     <div>
       <h1>add book</h1>

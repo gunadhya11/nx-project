@@ -1,15 +1,10 @@
-'use client'
-import { useQuery, gql } from '@apollo/client';
-import createApolloClient from '../apollo-client';
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  AwaitedReactNode,
-} from 'react';
-export const dynamic = 'force-dynamic';
-export async function Books() {
+'use client';
+import { gql, useSuspenseQuery } from '@apollo/client';
+interface Book {
+  title: String;
+  author: String;
+}
+export function Books() {
   const GET_LOCATIONS = gql`
     query GetBooks {
       books {
@@ -18,28 +13,16 @@ export async function Books() {
       }
     }
   `;
-  const { loading, error, data } = useQuery(GET_LOCATIONS);
-  console.log(data);
+  const { data: { books } = [] } = useSuspenseQuery(GET_LOCATIONS);
+  console.log(books);
   return (
     <div>
       <p>books container</p>
-      {data?.books.map(
-        (item: {
-          title:
-            | string
-            | number
-            | bigint
-            | boolean
-            | ReactElement<any, string | JSXElementConstructor<any>>
-            | Iterable<ReactNode>
-            | ReactPortal
-            | Promise<AwaitedReactNode>
-            | null
-            | undefined;
-        }) => (
-          <li>{item.title}</li>
-        )
-      )}
+      <ul>
+        {books.map((item: { title: String }) => (
+          <li className="p-3 rounded-lg m-0.5 bg-red-500  text-white ">{item.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }
