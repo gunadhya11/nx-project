@@ -1,5 +1,6 @@
 'use client';
 import { gql, useSuspenseQuery } from '@apollo/client';
+import Createpost from '../components/createpostform'
 interface BlogPost {
   title: String;
   content: String;
@@ -18,7 +19,7 @@ const Page = () => {
   return (
     <div>
       <h1>welcome to my blog!</h1>
-      
+      <Createpost/>
       <ul>
         {posts.map((item: { title: String, content: String }) => (
           <li className="p-3 rounded-md m-0.5 border flex">
