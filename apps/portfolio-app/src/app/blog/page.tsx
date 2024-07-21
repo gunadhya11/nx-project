@@ -1,8 +1,8 @@
 'use client';
 import { gql, useSuspenseQuery } from '@apollo/client';
 import Createpost from '../components/createpostform';
-import Modal from '../../app/components/modal'
-import { useState } from 'react';
+
+
 interface BlogPost {
   title: String;
   content: String;
@@ -17,14 +17,14 @@ const Page = () => {
     }
   `;
 
-  const [isopen, setisopen] = useState(false)
+  
 
   const { data: { posts } = [] } = useSuspenseQuery(GET_LOCATIONS);
   return (
     <div>
       <h1>welcome to my blog!</h1>
-      <button onClick={()=>setisopen(true)}>create new post</button>
-      <Modal isopen={isopen} close={setisopen}>content</Modal>
+      
+      
       <Createpost/>
       <ul>
         {posts.map((item: { title: String, content: String }) => (
