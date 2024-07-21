@@ -17,6 +17,7 @@
   "devDependencies": {
     "@apollo/client": "^3.11.0-rc.2",
     "@apollo/experimental-nextjs-app-support": "^0.11.2",
+    "@heroicons/react": "^2.1.5",
     "@nx/devkit": "19.4.2",
     "@nx/eslint": "19.4.2",
     "@nx/eslint-plugin": "19.4.2",
