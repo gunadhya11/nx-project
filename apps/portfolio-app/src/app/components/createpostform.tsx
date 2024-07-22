@@ -10,7 +10,6 @@ const CREATE_POST = gql`
       title
       content
     }
-
   }
 `;
 
