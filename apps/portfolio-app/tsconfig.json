@@ -16,7 +16,10 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "**/*.ts",
@@ -32,13 +35,6 @@
     "node_modules",
     "jest.config.ts",
     "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/*.stories.ts",
-    "**/*.stories.js"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.storybook.json"
-    }
+    "**/*.test.ts"
   ]
 }

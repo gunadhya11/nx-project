@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import Modal from './modal/modal';
-import Notification from './notification/notification';
+import Modal from '../../app/components/modal';
+import Notification from './notification';
 // Define mutation
 const CREATE_POST = gql`
   mutation CreatePost($content: String, $title: String) {
@@ -10,7 +10,6 @@ const CREATE_POST = gql`
       title
       content
     }
-
   }
 `;
 
