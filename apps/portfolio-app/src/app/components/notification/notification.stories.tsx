@@ -11,14 +11,34 @@ const meta: Meta<typeof notification> = {
 export default meta;
 type Story = StoryObj<typeof notification>;
 
-export const Primary = {
-  args: {},
-};
-
-export const Heading: Story = {
-  args: {},
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to notification!/gi)).toBeTruthy();
+export const Success = {
+  args: {
+    message:'record saved successfully',
+    title:'successful',
+    type:'success'
   },
 };
+
+export const Failure = {
+  args: {
+    message:'record saved successfully',
+    title:'successful',
+    type:'failure'
+  },
+};
+
+export const Primary = {
+  args: {
+    message:'record saved successfully',
+    title:'successful',
+    type:'default'
+  },
+};
+
+// export const Heading: Story = {
+//   args: {},
+//   play: async ({ canvasElement }) => {
+//     const canvas = within(canvasElement);
+//     expect(canvas.getByText(/Welcome to notification!/gi)).toBeTruthy();
+//   },
+// };

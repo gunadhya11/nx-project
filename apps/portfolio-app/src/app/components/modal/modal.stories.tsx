@@ -12,8 +12,11 @@ export default meta;
 type Story = StoryObj<typeof modal>;
 
 export const Primary = {
-  args: {},
-  children:<h1>hi</h1>
+  args: {
+    title:'create new blog post',
+    okbtntext:'create',
+    children:<h1>create blog post form</h1>
+  },
 };
 
 export const Heading: Story = {
