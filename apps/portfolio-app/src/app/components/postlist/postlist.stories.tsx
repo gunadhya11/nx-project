@@ -13,7 +13,10 @@ type Story = StoryObj<typeof postlist>;
 
 export const Primary = {
   args: {
-    posts:[{title:'post title', content:'post content here'}]
+    posts:[
+      {title:'post title', content:'post content here'},
+      {title:'post title', content:'post content here'}
+    ]
   },
 };
 
