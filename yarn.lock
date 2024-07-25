@@ -1491,6 +1491,11 @@
   resolved "https://registry.yarnpkg.com/@fal-works/esbuild-plugin-global-externals/-/esbuild-plugin-global-externals-2.1.2.tgz#c05ed35ad82df8e6ac616c68b92c2282bd083ba4"
   integrity sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==
 
+"@firecms/neat@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@firecms/neat/-/neat-0.2.2.tgz#9162bb8aa80b45df64a7c55d0311cec16af08b0c"
+  integrity sha512-u/1DJxrA+3uiYSayHGFFsYsSBOwknAY85HIwCRK19Fobnfz3YdIzGK2NoPRLrylxsKdUu/U/1lR/GOruwd+Eog==
+
 "@floating-ui/core@^1.6.0":
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.5.tgz#102335cac0d22035b04d70ca5ff092d2d1a26f2b"

@@ -3,7 +3,7 @@ import { gql, useSuspenseQuery } from '@apollo/client';
 import Createpost from '../components/createpostform';
 
 
-interface BlogPost {
+export interface BlogPost {
   title: String;
   content: String;
 }

@@ -1,25 +1,32 @@
 import React from 'react';
-
-function notification() {
+import {
+  CheckCircleIcon,
+  XCircleIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/outline';
+interface notificationprops {
+  message: string;
+  title: string;
+  type: string;
+}
+function notification({ message, title, type }: notificationprops) {
   return (
-    <div className="border rounded-md border-slate-400 p-3 flex">
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6 green"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-          />
-        </svg>
+    <div className="border rounded-md border-slate-400 p-3 flex w-1/3 bg-green-100">
+      <div className="pr-3">
+        {type === 'success' && (
+          <CheckCircleIcon className="size-6 text-blue-500" />
+        )}
+        {type === 'failure' && (
+          <XCircleIcon className="size-6 text-blue-500" />
+        )}
+        {type === 'default' && (
+          <InformationCircleIcon className="size-6 text-blue-500" />
+        )}
       </div>
-      <h4>notification</h4>
+      <div>
+        <h4 className="text-xl  ">{title}</h4>
+        <p className=" ">{message}</p>
+      </div>
     </div>
   );
 }
