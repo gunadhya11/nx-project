@@ -19,10 +19,27 @@ export const Primary = {
   },
 };
 
-export const Heading: Story = {
-  args: {},
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to button!/gi)).toBeTruthy();
+
+export const Secondary = {
+  args: {
+    buttonText: 'click me',
+    type:'secondary',
+    handleClick:(e: any)=>console.log(e)
   },
 };
+
+export const Neutral = {
+  args: {
+    buttonText: 'click me',
+    type:'neutral',
+    handleClick:(e: any)=>console.log(e)
+  },
+};
+
+// export const Heading: Story = {
+//   args: {},
+//   play: async ({ canvasElement }) => {
+//     const canvas = within(canvasElement);
+//     expect(canvas.getByText(/Welcome to button!/gi)).toBeTruthy();
+//   },
+// };

@@ -5,22 +5,11 @@ interface buttonProps {
   type: string;
 }
 const button = ({ handleClick, buttonText, type }: buttonProps) => {
-  const ref = useRef(null);
-  const handlemousemove = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e.pageX, e.pageY);
-    if (ref && ref.current) {
-      ref.current.style.backgroundPosition = `${e.pageX / 2}px ${
-        e.pageY / 2
-      }px`;
-      ref.current.style.backgroundImage = 'radial-gradient(#e66465, #9198e5)';
-    }
-  };
+  const buttonBg = type === 'primary' ? 'bg-yellow-400' : ( type === 'secondary'? 'bg-blue-600' : 'bg-gray-600')
   return (
     <button
       onClick={handleClick}
-      ref={ref}
-      onMouseMove={handlemousemove}
-      className="border sborder-yellow-400 p-2 px-3 rounded text-white hover:shadow-md"
+      className={`border hover:text sborder-yellow-400 p-2 px-3 rounded text-white hover:shadow-lg ${buttonBg}`}
     >
       {buttonText}
     </button>
