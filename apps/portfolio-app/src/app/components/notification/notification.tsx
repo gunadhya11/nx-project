@@ -5,9 +5,9 @@ import {
   InformationCircleIcon,
 } from '@heroicons/react/24/outline';
 interface notificationprops {
-  message: string;
-  title: string;
-  type: string;
+  message?: string;
+  title?: string;
+  type?: string;
 }
 function notification({ message, title, type }: notificationprops) {
   return (

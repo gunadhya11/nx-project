@@ -1,6 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-const connectDb = require('./config.ts') 
+import Post from './models/blopost';
+import connectDb from './config';
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
@@ -37,38 +38,48 @@ const typeDefs = `#graphql
     createPost(title: String, content: String): BlogPost
   }
 `;
-type Book={ 
-  title:string;
-  author:string;
-}
-const books:Book[] = [
-  
-];
-type BlogPost={ 
-  title:string;
-  content:string;
-}
-const posts:BlogPost[] = [
-  
-];
+type Book = {
+  title: string;
+  author: string;
+};
+const books: Book[] = [];
+type BlogPost = {
+  title: string;
+  content: string;
+};
+const posts: BlogPost[] = [];
 
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
     books: () => books,
-    posts: () => posts
+    posts: () => posts,
   },
   Mutation: {
-    addBook: (_: any, args: { author: any; title: any; }) => {
+    addBook: async (_: any, args: { author: any; title: any }) => {
       books.push({
-        author: args.author, title: args.title 
+        author: args.author,
+        title: args.title,
       });
+      try{
+        console.log(Post)
+        const newpost = await Post.create({
+          title: args.title,
+          author: args.author,
+        });
+        console.log(newpost);
+      }
+      catch(error){
+        console.log(error)
+      }
+      
       return args;
     },
-    createPost: (_: any, args: { content: any; title: any; }) => {
+    createPost: (_: any, args: { content: any; title: any }) => {
       posts.push({
-        content: args.content, title: args.title 
+        content: args.content,
+        title: args.title,
       });
       return args;
     },
@@ -78,6 +89,8 @@ const resolvers = {
 interface MyContext {
   token?: String;
 }
+
+connectDb();
 // The ApolloServer constructor requires two parameters: your schema
 // definition and yo  ur set of resolvers.
 const server = new ApolloServer<MyContext>({ typeDefs, resolvers });
@@ -91,6 +104,6 @@ const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });
 
-connectDb();
+
 
 console.log(`🚀  Server ready at: ${url}`);
