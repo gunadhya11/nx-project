@@ -54,7 +54,14 @@ const posts: BlogPost[] = [];
 const resolvers = {
   Query: {
     books: () => books,
-    posts: () => posts,
+    posts: async () => {
+      try {
+        const postList = await Post.find({});
+        return postList
+      } catch (error) {
+        return error;
+      }
+    },
   },
   Mutation: {
     addBook: async (_: any, args: { author: any; title: any }) => {
@@ -62,26 +69,21 @@ const resolvers = {
         author: args.author,
         title: args.title,
       });
-      try{
-        console.log(Post)
-        const newpost = await Post.create({
-          title: args.title,
-          author: args.author,
-        });
-        console.log(newpost);
-      }
-      catch(error){
-        console.log(error)
-      }
-      
       return args;
     },
-    createPost: (_: any, args: { content: any; title: any }) => {
-      posts.push({
-        content: args.content,
-        title: args.title,
-      });
-      return args;
+    createPost: async (_: any, args: { content: any; title: any }) => {
+      try{
+        const newpost = await Post.create({
+          title: args.title,
+          content: args.content,
+        }); 
+        return newpost;
+      }
+      catch(error){
+        console.log(error);
+        return error;
+      }
+       
     },
   },
 };
