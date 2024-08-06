@@ -57,6 +57,7 @@ const resolvers = {
     posts: async () => {
       try {
         const postList = await Post.find({});
+        console.log(postList);
         return postList
       } catch (error) {
         return error;

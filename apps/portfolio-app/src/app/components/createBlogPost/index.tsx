@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Editor from '../editor';
 
 const CreateBlogPost = () => {
   return (
-    <div>CreateBlogPost</div>
-  )
-}
+    <div>
+      <h1>CreateBlogPost</h1>
+      <Editor />
+    </div>
+  );
+};
 
-export default CreateBlogPost
+export default CreateBlogPost;
