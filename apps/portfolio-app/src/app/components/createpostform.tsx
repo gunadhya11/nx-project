@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import Modal from './modal/modal';
 import Notification from './notification/notification';
+import CreateBlogPost from './createBlogPost';
+import Editor from './editor';
 // Define mutation
 const CREATE_POST = gql`
   mutation CreatePost($content: String, $title: String) {
@@ -16,6 +18,7 @@ const CREATE_POST = gql`
 const createpostform = () => {
   const [title, setTitle] = useState('');
   const [content, setcontent] = useState('');
+  const [editorState, setEditorState] = useState();
   const [createPost, { data, loading, error }] = useMutation(CREATE_POST);
   const [isopen, setisopen] = useState(false);
   if (loading) return <h1>Submitting...</h1>;
@@ -36,6 +39,7 @@ const createpostform = () => {
         okbtntext="Create Post"
         title="create new post"
         positivebtnclick={positiveresponse}
+        isFullScreen={true}
       >
         <div className="w-full max-w-sm ">
           <div className="md:flex md:items-center mb-6">
@@ -69,13 +73,14 @@ const createpostform = () => {
               </label>
             </div>
             <div className="md:w-2/3">
-              <input
+            <Editor editorState={editorState} setEditorState={setEditorState}/>
+              {/* <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
                 type="text"
                 value={content}
                 onChange={(event) => setcontent(event.target.value)}
-              />
+              /> */}
             </div>
           </div>
           {/* <div className="md:flex md:items-center mb-6">
@@ -96,6 +101,7 @@ const createpostform = () => {
           </div> */}
         </div>
       </Modal>
+      <CreateBlogPost/>
     </>
   );
 };

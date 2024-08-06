@@ -5,6 +5,7 @@ interface modalprops {
   title: string;
   positivebtnclick: () => void;
   okbtntext: string;
+  isFullScreen: boolean;
 }
 const modal = ({
   children,
@@ -13,8 +14,14 @@ const modal = ({
   title,
   positivebtnclick,
   okbtntext,
+  isFullScreen
 }: modalprops) => {
   if (!isopen) return null;
+  const modalRootClass = 'fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity';
+  const fullSCreenRootClass = 'fixed w-full h-full top-0 left-0 flex items-center justify-center';
+
+  const contentClass = 'relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg';
+  const fullScreenContentClass = 'modal-container fixed w-full h-full z-50 overflow-y-auto'
   return (
     <div
       className="relative z-10"
@@ -22,12 +29,12 @@ const modal = ({
       role="dialog"
       aria-modal="true"
     >
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      <div className={isFullScreen?fullSCreenRootClass:modalRootClass}></div>
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-          <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-            <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div className={isFullScreen ? fullScreenContentClass : contentClass}>
+            <div className={`bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 ${isFullScreen ? 'min-h-full' : ''}`}>
               <div className="sm:flex sm:items-start items-center">
                 <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
                   <svg
