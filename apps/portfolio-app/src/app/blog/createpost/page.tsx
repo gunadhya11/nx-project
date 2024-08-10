@@ -1,8 +1,7 @@
+'use client'
 import React, { useState } from 'react';
-import Editor from '../editor';
-import FullScreenModal from './fullscreenmodal';
+import Editor from '../../components/editor';
 import { gql, useMutation } from '@apollo/client';
-
 // Define mutation
 const CREATE_POST = gql`
   mutation CreatePost($content: String, $title: String) {
@@ -12,28 +11,15 @@ const CREATE_POST = gql`
     }
   }
 `;
+
 const CreateBlogPost = () => {
-  const [content, setcontent] = useState('');
   const [title, setTitle] = useState('');
-  const [isopen, setIsOpen] = useState(false);
-  const [createPost, { data, loading, error }] = useMutation(CREATE_POST); 
-  if (loading) return <h1>Submitting...</h1>;
-  if (error) return <div>{`Submission error! ${error.message}`}</div>;
-  const positiveresponse = () => {
-    console.log(typeof content, content);
-    const postContent = JSON.stringify(content);
-    createPost({ variables: { content:postContent, title } });
-    setTitle('');
-    setcontent('');
-    setIsOpen(false);
-  };
+  const [editorState, setEditorState] = useState();
+  const [createPost, { data, loading, error }] = useMutation(CREATE_POST);
   return (
     <div>
       <h1>CreateBlogPost</h1>
-      <button onClick={() => setIsOpen(true)}>createpost</button>
-      <FullScreenModal isopen={isopen} close={() => setIsOpen(false)} positiveresponse={positiveresponse}>
-        <p>lorem ipsum</p>
-        <div className="md:flex md:items-center mb-6">
+      <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label
                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -54,9 +40,7 @@ const CreateBlogPost = () => {
               />
             </div>
           </div>
-        <Editor editorState={content} setEditorState={setcontent} />
-      </FullScreenModal>
-      {/*  */}
+      <Editor editorState={editorState} setEditorState={setEditorState}/>
     </div>
   );
 };

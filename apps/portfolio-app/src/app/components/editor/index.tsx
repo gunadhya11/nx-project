@@ -47,7 +47,7 @@ export default function Editor({editorState, setEditorState}: EditorProps) {
   
   function onChange(editorState: SetStateAction<string | null>) {
     console.log("####", editorState);
-    // setEditorState(editorState);
+    setEditorState(editorState);
   }
   return (
     <LexicalComposer initialConfig={editorConfig}>

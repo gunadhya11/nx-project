@@ -39,7 +39,7 @@ const createpostform = () => {
         okbtntext="Create Post"
         title="create new post"
         positivebtnclick={positiveresponse}
-        isFullScreen={true}
+        isFullScreen={false}
       >
         <div className="w-full max-w-sm ">
           <div className="md:flex md:items-center mb-6">
